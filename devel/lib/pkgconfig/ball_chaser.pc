@@ -1,0 +1,8 @@
+prefix=/home/jamesl/Project2/devel
+
+Name: ball_chaser
+Description: Description of ball_chaser
+Version: 0.0.0
+Cflags: -I/home/jamesl/Project2/devel/include
+Libs: -L${prefix}/lib 
+Requires: 

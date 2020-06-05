@@ -1,0 +1,2 @@
+ball_chaser:my_robot
+-DCATKIN_DEVEL_PREFIX=/home/jamesl/Project2/devel -DCMAKE_INSTALL_PREFIX=/home/jamesl/Project2/install -G Unix Makefiles
