@@ -9,10 +9,11 @@ ros::ServiceClient client;
 void drive_robot(float lin_x, float ang_z)
 {
     ROS_INFO("Calling drive robot\nlinear x: %1.2f angular z: %1.2f", lin_x, ang_z);
-    // TODO: Request a service and pass the velocities to it to drive the robot
     ball_chaser::DriveToTarget srv;
     srv.request.linear_x = lin_x;
     srv.request.angular_z = ang_z;
+
+    //Sets linear and angular motion for robot
     if (!client.call(srv))
         ROS_ERROR("Failed to call service drive_robot!");
 }
@@ -23,6 +24,8 @@ void process_image_callback(const sensor_msgs::Image img)
     int mark1 = img.step/3;
     int mark2 = img.step*2/3;
     int white_pixel = 255;
+    // Divides screen into three sections, uses position relative to sections to designate movement
+
     bool seen_ball = false;
     for (int i = 0; i < img.height*img.step; i++){
         if (img.data[i] == 255){
@@ -44,7 +47,8 @@ void process_image_callback(const sensor_msgs::Image img)
     if (seen_ball == false){
         drive_robot(0, 0);
     }
-    seen_ball = false;
+    // Reset if movement command wass issued
+    seen_ball = false; 
     
 }
 
