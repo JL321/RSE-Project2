@@ -27,8 +27,8 @@ void process_image_callback(const sensor_msgs::Image img)
     // Divides screen into three sections, uses position relative to sections to designate movement
 
     bool seen_ball = false;
-    for (int i = 0; i < img.height*img.step; i++){
-        if (img.data[i] == 255){
+    for (int i = 0; i < img.height*img.step-2; i++){
+        if (img.data[i] == 255 && img.data[i+1] == 255 && img.data[i+2] == 255){
             int rowPos = i%img.step;
             ROS_INFO("Boundaries: %d %d Position: %d", mark1, mark2, rowPos);
             if (rowPos <= mark1){
